@@ -1,0 +1,12 @@
+.text-typing {
+    font-family: monospace;
+    /*width: 700px;*/
+}
+
+.text-current {
+    background: lightblue;
+}
+
+.text-error {
+    background: lightpink;
+}
