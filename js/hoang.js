@@ -33,15 +33,17 @@ $( function() {
     var text = $('.text-typing').text();
     var current = 0;
     var checkChar = function(ch) {
+        $('#' + current).removeClass('text-current');
         if (ch == "" + text.charAt(current)) {
-            $('#' + current).removeClass('text-current');
             $('#' + current).removeClass('text-error');
             $('#' + (current+1)).addClass('text-current');
             current++;
              $("#" + current).attr("tabindex",0).focus();
              $("#" + (current -1)).attr("tabindex",-1).blur();
         }
-        else $('#' + current).addClass('text-error');
+        else {
+            $('#' + current).addClass('text-error');
+            }
     };
     window.onkeydown = function(event) {
         if (event.keyCode == 32) {
