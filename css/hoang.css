@@ -1,6 +1,5 @@
-.text-typing {
+#text-typing {
     font-family: monospace;
-    /*width: 700px;*/
 }
 
 .text-error {
