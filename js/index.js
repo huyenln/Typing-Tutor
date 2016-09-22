@@ -1,34 +1,3 @@
-// $( function() {
-//     var text = $('.text-typing').text();
-//     var current = 0;
-//     $(document).keypress(function(event) {
-//         if (String.fromCharCode(event.which) == ""+text.charAt(current)) {
-//             $('#' + current).removeClass('text-current');
-//             $('#' + current).removeClass('text-error');
-//             $('#' + (current+1)).addClass('text-current');
-//             $("#" + current).attr("tabindex",0).focus();
-//             $("#" + (current -1)).attr("tabindex",-1).blur();
-//             current++;
-//             event.preventDefault();
-//         }
-//         else {
-//             $('#' + current).addClass('text-error');
-//         }
-//     });
-
-//     ////////////////////////////
-//     // Phần của Giang add thêm :v
-//     $("#modalToggle").click(function(){
-//         $("#modalToggle").blur();
-//     })
-
-//     $("#typingField").click(function(){
-//         $("#typingField").blur();
-//         $("#" + current).attr("tabindex",0).focus();
-//     })
-// })
-
-
 $(function() {
     var text = $('#text-typing').text();
     var current = 0;
@@ -45,6 +14,7 @@ $(function() {
             $('#' + (current+1)).addClass('text-current');
             current++;
             if (current == text.length) {
+                $('#index-modal').modal('hide');
                 alert("Congratulations! You finished this exercise!");
             }
             else {
@@ -55,6 +25,7 @@ $(function() {
         else {
             $('#' + current).addClass('text-error');
         }
+        $('#cpm').text(Math.round(charsTyped / ((timer-start)/1000) * 60));
         $('#accuracy').text(Math.round(current / charsTyped * 100));
     };
 // Reset everything when clicking the "Start Typing" button
@@ -78,7 +49,7 @@ $(function() {
     }
 
 // Starts timer when the dialog is shown
-    $("#index_modal").on("shown.bs.modal", function(e) {
+    $("#index-modal").on("shown.bs.modal", function(e) {
         start = (new Date).getTime();
         setInterval(setTime, 1000);
     });
@@ -101,3 +72,4 @@ $(function() {
         $("#" + current).attr("tabindex",0).focus();
     });
 })
+
