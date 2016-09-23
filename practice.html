@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="css/theme.css">
   <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src="js/fb.js"></script>
 </head>
 <body>
 
@@ -40,8 +41,11 @@
           </li>
         </ul>
         <form class="nav navbar-form navbar-right">
-          <div class="btn btn-primary">Sign in</div>
+          <div class="btn btn-primary btn-fb-login">Sign in</div>
         </form>
+        <ul class="nav navbar-nav navbar-right" id="nav-profile">
+            <li><a id="msg-logged-in"></a></li>
+        </ul>
       </div><!-- /.navbar-collapse -->
     </div>
   </nav>
