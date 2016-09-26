@@ -1,7 +1,28 @@
+function getInfo() {
+    FB.api(
+        "/me?fields=first_name,name", 
+        function (response) {
+            if (response && !response.error) {
+                $("#msg-logged-in").text("Welcome, " + response.first_name);
+                $("#name").text(response.name);
+            }
+            else $("#msg-logged-in").text("Welcome!");
+        }
+    );
+    FB.api(
+        "/me/picture?type=large",
+        function (response) {
+            if (response && !response.error) {
+                $(".fb-picture").attr("src", response.data.url);
+            }
+        }
+    );
+}
+
 window.fbAsyncInit = function() {
     FB.init({
         appId      : "1190204851001830",
-        xfbml      : true,
+        cookie     : true,
         version    : "v2.7"
     });
     $(".btn-fb-login").hide();
@@ -10,35 +31,18 @@ window.fbAsyncInit = function() {
         FB.getLoginStatus(function(response) {
             if (response.status === "connected") {
                 $("#nav-profile").show();
-                var accessToken = response.authResponse.accessToken;
-                FB.api(
-                    "/me?fields=first_name", 
-                    function (response) {
-                        if (response && !response.error) {
-                            $("#msg-logged-in").text("Welcome, " + response.first_name);
-                        }
-                        else $("#msg-logged-in").text("Welcome!");
-                    }
-                )
+                // var accessToken = response.authResponse.accessToken;
+                getInfo();
             }
             else {
                 $(".btn-fb-login").show();
                 $(".btn-fb-login").click(function () {
-                    console.log("hello");
                     FB.login(function (response) {
                         if (response.status === "connected") {
                             $(".btn-fb-login").hide();
                             $("#nav-profile").show();
-                            var accessToken = response.authResponse.accessToken;
-                            FB.api(
-                                "/me?fields=first_name", 
-                                function (response) {
-                                    if (response && !response.error) {
-                                        $("#msg-logged-in").text("Welcome, " + response.first_name);
-                                    }
-                                    else $("#msg-logged-in").text("Welcome!");
-                                }
-                            )
+                            // var accessToken = response.authResponse.accessToken;
+                            getInfo();
                         }
                         else alert("Something went wrong. Please sign in again.");
                     });
@@ -53,6 +57,13 @@ window.fbAsyncInit = function() {
                 href: "https://facebook.com",
                 hashtag: "#TypingTutorCNPM",
                 quote: "Typing has never been so much fun."
+            });
+        });
+
+        $("#btn-logout").on("click", function() {
+            FB.logout(function(response) {
+            // user is now logged out
+                window.location = "/";
             });
         });
     });

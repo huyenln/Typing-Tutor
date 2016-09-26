@@ -1,6 +1,6 @@
 <!doctype html>
 <head>
-  <title>Typing Tutor - Practice</title>
+  <title>Typing Tutor - My profile</title>
   <meta charset="utf-8">
   <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet" integrity="sha384-h21C2fcDk/eFsW9sC9h0dhokq5pDinLNklTKoxIZRUn3+hvmgQSffLLQ4G4l2eEr" crossorigin="anonymous">  
   <link rel="stylesheet" href="css/theme.css">
@@ -30,7 +30,7 @@
           <li>
             <a href="lessons.html">Lessons</a>
           </li>
-          <li class="active">
+          <li>
             <a href="practice.html">Practice</a>
           </li>
           <li>
@@ -42,7 +42,7 @@
         </form>
         <ul class="nav navbar-nav navbar-right" id="nav-profile">
           <a href="me.html"><img class="fb-picture"/></a>
-          <li>
+          <li class="active">
             <a id="msg-logged-in" href="me.html"></a>
           </li>
         </ul>
@@ -51,21 +51,29 @@
   </nav>
 
   <main class="container">
-    
-    <div class="jumbotron">
-      <div class="container">
-        <h1>Practise typing real-life text</h1>
-        <p>Hundreds of paragraphs, all taken from English-language classics. Hone your skills while enjoying the beauty of literature.</p>
-        <p>How long would you like your paragraph to be?</p>
-        <p>
-          <a class="btn btn-success" href="paragraph.html">100 words</a> <a class="btn btn-warning" href="paragraph.html">150 words</a> <a class="btn btn-danger" href="paragraph.html">200 words</a>
-        </p>
+      
+    <div class="well">
+      <div><img class="fb-picture img-responsive img-thumbnail center-block"/></div>
+      <div class="text-center">
+        <h3 id="name"></h3> 
+        <a id="btn-logout" class="btn btn-danger">Sign out</a>
       </div>
     </div>
-    
+      
+    <div class="col-md-6">
+      <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Your stats</h3>
+          </div>
+          <table class="table">
+            <tbody>
+              <tr><td>Words typed</td> <td>100</td></tr>
+              <tr><td>Average CPM</td>  <td>200</td></tr>
+              <tr><td>Accuracy</td> <td>90%</td></tr>
+            </tbody>
+          </table>
+      </div>  
+    </div>
+
   </main>
-
-
-
-
 </body>

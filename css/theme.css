@@ -6,7 +6,12 @@
     border-radius: 200px;
 }
 
+nav .fb-picture {
+    height: 50px;
+    width: auto;    
+}
+
 /* Make up for the fixed navbar */
 main {
-    padding-top: 50px;
+    padding-top: 60px;
 }

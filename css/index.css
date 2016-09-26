@@ -1,3 +1,7 @@
+main {
+    /* Overrides theme.css */
+    padding-top: 50px !important;
+}
 
 main > section {
     color: #fff;
