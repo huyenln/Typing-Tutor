@@ -44,24 +44,24 @@ $(function() {
         var key;
         var shift = false;
         if ($.inArray(currentChar, shiftedKeys) !== -1) {
-            console.log("Is a shifted key");
             key = "#key-" + mapping[currentChar];
-            $(".key-shift").addClass("key-shifted");
+            $(".key-shift").addClass("key-current");
             $(key).addClass("key-shifted");
         }
         else {
-            if (currentChar == ",") $("#key-comma").addClass("key-current");
-            else if (currentChar == ".") $("#key-period").addClass("key-current");
-            else if (currentChar == " ") $("#key-space").addClass("key-current");
-            else if (currentChar == "\\") $("#key-backslash").addClass("key-current");
-            else if (currentChar == ";") $("#key-semicolon").addClass("key-current");
+            if (currentChar == ",") key ="#key-comma";
+            else if (currentChar == ".") key = "#key-period";
+            else if (currentChar == " ") key = "#key-space";
+            else if (currentChar == "\\") key = "#key-backslash";
+            else if (currentChar == ";") key = "#key-semicolon";
             else if (currentChar.toLowerCase() != currentChar) {
                 key = "#key-" + currentChar.toLowerCase();
                 $(key).addClass("key-shifted");
-                $(".key-shift").addClass("key-shifted");
+                $(".key-shift").addClass("key-current");
             }
-            else $("#key-" + currentChar).addClass("key-current");
+            else key = "#key-" + currentChar;
         }
+        $(key).addClass("key-current");
     }
 
     nextChar(current);

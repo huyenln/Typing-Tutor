@@ -144,14 +144,34 @@
 }
 
 .key-current {
-    border: 1px solid #2780E3;
-    background-color: #2780E3;
     color: #fff;
 }
 
-.key-shifted {
+.key-current.key-index {
     border: 1px solid #3FB618;
     background-color: #3FB618;
-    color: #fff;
+}
+
+.key-current.key-middle {
+    border: 1px solid #9954BB;
+    background-color: #9954BB;
+}
+
+.key-current.key-ring {
+    border: 1px solid #FF7518;
+    background-color: #FF7518;
+}
+
+.key-current.key-pinky {
+    border: 1px solid #FF0039;
+    background-color: #FF0039;
+}
+
+.key-current.key-shift, .key-current#key-space {
+    border: 1px solid #2780E3;
+    background-color: #2780E3;
+}
+
+.key-shifted {
     text-transform: capitalize; 
 }
