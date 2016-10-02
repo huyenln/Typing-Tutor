@@ -1,12 +1,72 @@
 $(function() {
-    $("#modal-ready").modal("show");
     var text = $("#typing-field").text();
     var current = 0;
     var charsTyped = 0.0;
     var totalChars = text.length;
     var start = 0;
     var timer = 0;
-    function checkChar (ch) {
+    var mapping = {
+        "~": "`",
+        "!": "1",
+        "@": "2",
+        "#": "3",
+        "$": "4",
+        "%": "5",
+        "^": "6",
+        "&": "7",
+        "*": "8",
+        "(": "9",
+        ")": "0",
+        "_": "-",
+        "+": "=",
+        "{": "[",
+        "}": "]",
+        "|": "backslash",
+        ":": "semicolon",
+        "\"": "'",
+        "<": "comma",
+        ">": "period",
+        "?": "/"
+    }
+
+    $("#keyboard-toggle").on("click", function() {
+        $("#keyboard").toggle();
+        if ($("#keyboard").is(":visible")) $("#typing-panel").css("max-height", "30vh");
+        else $("#typing-panel").css("max-height", "60vh");
+    });
+
+    var shiftedKeys = ["~","!","@","#","$","%","^","&","*","(",")","_","+","{","}","|",":","\"","<",">","?"];
+
+    function nextChar(num) {
+        $("#keyboard li").removeClass("key-current");
+        $("#keyboard li").removeClass("key-shifted");
+        var currentChar = $("#" + current).text();
+        var key;
+        var shift = false;
+        if ($.inArray(currentChar, shiftedKeys) !== -1) {
+            console.log("Is a shifted key");
+            key = "#key-" + mapping[currentChar];
+            $(".key-shift").addClass("key-shifted");
+            $(key).addClass("key-shifted");
+        }
+        else {
+            if (currentChar == ",") $("#key-comma").addClass("key-current");
+            else if (currentChar == ".") $("#key-period").addClass("key-current");
+            else if (currentChar == " ") $("#key-space").addClass("key-current");
+            else if (currentChar == "\\") $("#key-backslash").addClass("key-current");
+            else if (currentChar == ";") $("#key-semicolon").addClass("key-current");
+            else if (currentChar.toLowerCase() != currentChar) {
+                key = "#key-" + currentChar.toLowerCase();
+                $(key).addClass("key-shifted");
+                $(".key-shift").addClass("key-shifted");
+            }
+            else $("#key-" + currentChar).addClass("key-current");
+        }
+    }
+
+    nextChar(current);
+
+    function checkChar(ch) {
         charsTyped++;
         $("#" + current).removeClass("text-current");
         if (ch == "" + text.charAt(current)) {
@@ -22,6 +82,7 @@ $(function() {
                 successDialog(data);
             }
             else {
+                nextChar(current);
                 $("#" + current).attr("tabindex",0).focus();
                 $("#" + (current -1)).attr("tabindex",-1).blur();
             }
@@ -42,12 +103,15 @@ $(function() {
         $("#cpm").text(Math.round(charsTyped / ((timer-start)/1000) * 60));
     }
 
-// Starts timer when the dialog is shown
-   $("#modal-ready").on("hidden.bs.modal", function(e) {
-        start = (new Date).getTime();
-        setInterval(setTime, 1000);
-        // Key event handler
+    var typing = false;
+// Starts timer when the user starts typing
+// Key event handler
         window.onkeydown = function(event) {
+            if (typing == false) {
+                typing = true;
+                start = (new Date).getTime();
+                setInterval(setTime, 1000);
+            }
             switch(event.keyCode) {
                 case 32: 
                 // Space, will scroll the page if not caught
@@ -67,7 +131,6 @@ $(function() {
         $(document).keypress(function(event) {
             checkChar(String.fromCharCode(event.which));
         });
-    });
 
 // Focus trick by Giang
     $("#typing-field").click(function(){

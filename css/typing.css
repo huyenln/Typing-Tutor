@@ -2,6 +2,10 @@
     white-space: pre-wrap;
 }
 
+#typing-panel {
+     max-height: 30vh;
+}
+
 .text-current {
     -webkit-animation: blinking-cursor 0.6s infinite;
     -moz-animation:    blinking-cursor 0.6s infinite;
@@ -79,4 +83,75 @@
         background-color: #2780E3; 
         color: #fff;
     }
+}
+
+/* Keyboard and hands*/
+/* Every key */
+#keyboard ul {
+    margin: 0;
+    padding: 0 0 3px 0;
+}
+
+#keyboard li {
+    display: inline-block;
+    font-size: 2.5vh;
+    padding-right: 1%;
+    height: 5vh;
+    line-height: 5vh;
+    border: 1px solid #aaa;
+    border-radius: 2px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* Small keys */
+#keyboard .key-normal {
+    width: 6%;
+    
+}
+
+#key-backspace {
+    width: 10%;
+}
+
+#key-tab {
+    width: 8%;
+}
+
+#key-backslash {
+    width: 8%;
+}
+
+#key-capslock {
+    width: 12%;
+}
+
+#key-enter {
+    width: 10.5%;
+}
+
+#key-lshift {
+    width: 15%
+}
+
+#key-rshift {
+    width: 14%
+}
+
+#key-space {
+    width: 50%;
+    margin: 0 25% 0 25%;
+}
+
+.key-current {
+    border: 1px solid #2780E3;
+    background-color: #2780E3;
+    color: #fff;
+}
+
+.key-shifted {
+    border: 1px solid #3FB618;
+    background-color: #3FB618;
+    color: #fff;
+    text-transform: capitalize; 
 }
