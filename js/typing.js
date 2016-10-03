@@ -38,8 +38,7 @@ $(function() {
     var shiftedKeys = ["~","!","@","#","$","%","^","&","*","(",")","_","+","{","}","|",":","\"","<",">","?"];
 
     function nextChar(num) {
-        $("#keyboard li").removeClass("key-current");
-        $("#keyboard li").removeClass("key-shifted");
+        $(".key").removeClass("key-current key-shifted");
         var currentChar = $("#" + current).text();
         var key;
         var shift = false;
@@ -62,15 +61,25 @@ $(function() {
             else key = "#key-" + currentChar;
         }
         $(key).addClass("key-current");
+        $("#left-hand").removeClass("index middle ring pinky");
+        $("#right-hand").removeClass("index middle ring pinky");
+        var finger = "";
+        if ($(key).hasClass("key-index")) finger = "index";
+        else if ($(key).hasClass("key-middle")) finger = "middle";
+        else if ($(key).hasClass("key-ring")) finger = "ring";
+        else if ($(key).hasClass("key-pinky")) finger = "pinky";
+        if ($(key).hasClass("key-left"))
+            $("#left-hand").addClass(finger);
+        else if($(key).hasClass("key-right"))
+            $("#right-hand").addClass(finger);
     }
 
     nextChar(current);
 
     function checkChar(ch) {
         charsTyped++;
-        $("#" + current).removeClass("text-current");
+        $("#" + current).removeClass();
         if (ch == "" + text.charAt(current)) {
-            $("#" + current).removeClass("text-error");
             $("#" + (current+1)).addClass("text-current");
             current++;
             if (current == text.length) {
